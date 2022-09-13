@@ -1,7 +1,3 @@
-a = int(input())
-hundreds = a//100;
+a=int(input())
 a = a % 100;
-digits = a/10;
-numbers = a % 10;
-summa = int(hundreds + digits + numbers);
-print(f'{summa}')
+print(f'{a//10}')
