@@ -1,0 +1,2 @@
+Trip 365 arrived from Sasovo in 12:56:30 message received in 12:57:20 Saved in database
+Trip 452 departured to Sochi in 13:04:22 message received in 13:11:32 Error in database query

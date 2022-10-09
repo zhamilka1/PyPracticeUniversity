@@ -62,7 +62,7 @@ def monty_hall(n):
     print(f"if we dont change: {round(success_counter_without_changing/n, 2)*100} if we randomly change: {round(success_counter_with_random_changing/n, 2)*100} if we change everytime: {round(success_counter_with_changing/n, 2) *100}")
 
 
-def birthday_paradox2(N):
+def birthday_paradox(N):
     days = 12 * 28  # DAYS IN YEAR
     var_other = 1  #
     for i in range(1, N + 1):
