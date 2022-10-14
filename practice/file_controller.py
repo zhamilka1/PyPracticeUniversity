@@ -1,5 +1,4 @@
 def get_unique(text):
-    words_list = []
     unique_words_list = []
     words_list = text.split()
     for element in words_list:
