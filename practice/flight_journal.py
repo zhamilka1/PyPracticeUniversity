@@ -12,4 +12,3 @@ def journal_parser(input_filename, output_filename):
     for line in bad_journal:
         data = parse(line)
         good_journal.writelines(f"[{data[3]}] - Train № {data[0]} {data[1]} {data[2]}\n")
-journal_parser("bad_journal.txt", "good_journal.txt")
