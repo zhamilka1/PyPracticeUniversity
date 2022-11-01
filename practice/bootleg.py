@@ -25,5 +25,5 @@ def boot():
         print("This is file error checker")
     elif(choise == 6):
         print("This is file_controller")
-
+        flight_journal.journal_parser("bad_journal.txt", "good_journal.txt")
 boot()

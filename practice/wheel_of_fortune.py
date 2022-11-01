@@ -4,8 +4,7 @@ def is_win(word):
     return False
   else:
     return True
-def play():
-  words = ["книга", "месяц", "ручка", "шарик", "олень", "носок", "ил", "река", "эйяйяфякюдль"]
+def play(words):
   while True:
     if(len(words)==0):
       print("nice game!)")

@@ -40,4 +40,5 @@ def get_totals_2(list, limiter, counter):
             number += counter
         data = tuple([str(row[0]), str(number)])
         returnable.append(data)
-    print(returnable)
+    return returnable
+
