@@ -1,4 +1,4 @@
-import fortyna.game_administrative as admin
+import game_administrative as admin
 import random as rnd
 def is_win(word):
   if "*" in word:
