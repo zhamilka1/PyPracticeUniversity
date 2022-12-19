@@ -1,5 +1,5 @@
 import paradox
-import wheel_of_fortune
+from practice.thrash import wheel_of_fortune
 import file_controller
 import flight_journal
 import book_practice

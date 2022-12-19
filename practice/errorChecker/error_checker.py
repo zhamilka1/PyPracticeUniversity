@@ -16,8 +16,3 @@ def get_list(filename = "error_journal.txt"):
             file.close()
         except UnboundLocalError:
             print()
-
-get_list()
-
-
-print(z)
