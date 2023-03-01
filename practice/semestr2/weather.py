@@ -1,5 +1,6 @@
 import urllib.request as getWeather
 import json
+from datetime import datetime
 def getWeatherInCity(city = "Moscow"):
     url = configureUrl(city)
     data = getWeather.urlopen(url).read().decode()
@@ -18,5 +19,7 @@ def makeParams(keyName, data):
     return result
 
 weather = json.loads(getWeatherInCity())
-print(weather['main']['temp'], ' ', weather['main']['humidity'])
-print(weather)
+now = datetime.now()
+timetostr = now.strftime("%H:%M:%S")
+print(f"Город: {weather['name']} Время: {timetostr}" )
+print(f"Температура: {weather['main']['temp']} Влажность: {weather['main']['humidity']} Скорость ветра: {weather['wind']['speed']} Атмосферное давление: {weather['main']['pressure']}")
