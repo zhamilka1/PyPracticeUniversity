@@ -1,8 +1,7 @@
 import urllib.request as getWeather
 import json
 def getWeatherInCity(city = "Moscow"):
-    url = configureUrl(city)
-    data = getWeather.urlopen(url).read().decode()
+    data = getWeather.urlopen(configureUrl(city)).read().decode()
     return data
 
 def configureUrl(city):
@@ -14,9 +13,14 @@ def configureUrl(city):
     return result
 
 def makeParams(keyName, data):
-    result =  str('&'+keyName+'='+data)
+    result = str('&'+keyName+'='+data)
     return result
 
+
+def createLog(weather):
+    file = open('logs.txt', encoding="UTF-8", mode="w")
+    file.write(str(f"Temp:{weather['main']['temp']},{weather['weather'][0]['description']} Vlaga:{weather['main']['humidity']} Wind speed: {weather['wind']['speed']} Pressure: {weather['main']['pressure']}"))
+
 weather = json.loads(getWeatherInCity())
-print(weather['main']['temp'], ' ', weather['main']['humidity'])
-print(weather)
+print(f" Temp:{weather['main']['temp']},{weather['weather'][0]['description']} Vlaga:{weather['main']['humidity']} Wind speed: {weather['wind']['speed']} Pressure: {weather['main']['pressure']}")
+createLog(weather)
