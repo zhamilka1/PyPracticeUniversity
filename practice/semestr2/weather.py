@@ -1,7 +1,9 @@
 import urllib.request as getWeather
 import json
+from datetime import datetime
 def getWeatherInCity(city = "Moscow"):
-    data = getWeather.urlopen(configureUrl(city)).read().decode()
+    url = configureUrl(city)
+    data = getWeather.urlopen(url).read().decode()
     return data
 
 def configureUrl(city):
@@ -13,14 +15,11 @@ def configureUrl(city):
     return result
 
 def makeParams(keyName, data):
-    result = str('&'+keyName+'='+data)
+    result =  str('&'+keyName+'='+data)
     return result
 
-
-def createLog(weather):
-    file = open('logs.txt', encoding="UTF-8", mode="w")
-    file.write(str(f"Temp:{weather['main']['temp']},{weather['weather'][0]['description']} Vlaga:{weather['main']['humidity']} Wind speed: {weather['wind']['speed']} Pressure: {weather['main']['pressure']}"))
-
 weather = json.loads(getWeatherInCity())
-print(f" Temp:{weather['main']['temp']},{weather['weather'][0]['description']} Vlaga:{weather['main']['humidity']} Wind speed: {weather['wind']['speed']} Pressure: {weather['main']['pressure']}")
-createLog(weather)
+now = datetime.now()
+timetostr = now.strftime("%H:%M:%S")
+print(f"Город: {weather['name']} Время: {timetostr}" )
+print(f"Температура: {weather['main']['temp']} Влажность: {weather['main']['humidity']} Скорость ветра: {weather['wind']['speed']} Атмосферное давление: {weather['main']['pressure']}")
