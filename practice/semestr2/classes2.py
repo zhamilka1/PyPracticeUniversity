@@ -89,11 +89,11 @@ class Board:
         self.cells = []
         for i in range(0,9):
             self.cells.append(Cell(i))
-            self.cells[i] = 0
+            self.cells[i].value = 0
     def showCells(self, *args, **kwargs):
-        print(f"{self.cells[0]}|{self.cells[1]}|{self.cells[2]}")
-        print(f"{self.cells[3]}|{self.cells[4]}|{self.cells[5]}")
-        print(f"{self.cells[6]}|{self.cells[7]}|{self.cells[8]}")
+        print(f"{self.cells[0].value}|{self.cells[1].value}|{self.cells[2].value}")
+        print(f"{self.cells[3].value}|{self.cells[4].value}|{self.cells[5].value}")
+        print(f"{self.cells[6].value}|{self.cells[7].value}|{self.cells[8].value}")
     def visitCell(self, cellCoordinate, playerNumber):
         board.cells[cellCoordinate].makeVisited(playerNumber)
     def allCellAreNotVisited(self):
@@ -101,7 +101,25 @@ class Board:
             if(cell.value == 0):
                 return True
         return False
-
+    def winCheck(self, playerNumber):
+        if (self.cells[0].value==playerNumber) and (self.cells[4].value==playerNumber) and (self.cells[8].value==playerNumber):
+            return True
+        elif (self.cells[2].value==playerNumber) and (self.cells[4].value==playerNumber) and (self.cells[6].value==playerNumber):
+            return True
+        elif (self.cells[0].value==playerNumber) and (self.cells[3].value==playerNumber) and (self.cells[6].value==playerNumber):
+            return True
+        elif (self.cells[1].value == playerNumber) and (self.cells[4].value == playerNumber) and (self.cells[7].value == playerNumber):
+            return True
+        elif (self.cells[2].value==playerNumber) and (self.cells[5].value==playerNumber) and (self.cells[8].value==playerNumber):
+            return True
+        elif (self.cells[0].value == playerNumber) and (self.cells[1].value == playerNumber) and (self.cells[2].value == playerNumber):
+            return True
+        elif (self.cells[3].value == playerNumber) and (self.cells[4].value == playerNumber) and (self.cells[5].value == playerNumber):
+            return True
+        elif (self.cells[6].value == playerNumber) and (self.cells[7].value == playerNumber) and (self.cells[8].value == playerNumber):
+            return True
+        else:
+            return False
 board = Board()
 playerFirst = Player('zhamilka', 1)
 playerSecond = Player('alex', 2)
@@ -109,6 +127,7 @@ while board.allCellAreNotVisited():
     board.showCells()
     firstPlayerMove = int(input("Type your cell from 1 to 9 Zha"))
     board.visitCell(firstPlayerMove-1, playerFirst.number)
+    print(board.winCheck(playerFirst.number))
     board.showCells()
     secondPlayerMove = int(input("Type your cell from 1 to 9 Alex"))
     board.visitCell(secondPlayerMove-1, playerSecond.number)
