@@ -29,24 +29,20 @@ class Sphere():
             return True
         return False
 
-s0 = Sphere(0.5) # test sphere creation with radius and default center
-print(s0.get_center()) # (0.0, 0.0, 0.0)
-print(s0.get_volume()) # 0.523598775598
-print(s0.is_point_inside(0 , -1.5, 0)) # False
-s0.set_radius(1.6)
-print(s0.is_point_inside(0, -1.5, 0)) # True
-print(s0.get_radius()) # 1.6
+#s0 = Sphere(0.5) # test sphere creation with radius and default center
+#print(s0.get_center()) # (0.0, 0.0, 0.0)
+#print(s0.get_volume()) # 0.523598775598
+#print(s0.is_point_inside(0 , -1.5, 0)) # False
+#s0.set_radius(1.6)
+#print(s0.is_point_inside(0, -1.5, 0)) # True
+#print(s0.get_radius()) # 1.6
 
-class SuperStr:
+class SuperStr(str):
     def __init__(self, string):
         self.string = string
-    def __call__(self, *args, **kwargs):
-        return self.string
     def is_repeatance(self, string):
-        try:
-            string = str(string)
-        finally:
-            print()
+        if not (isinstance(string, str)):
+            return False
         while True:
             if(len(string)>len(self.string)):
                 return False
@@ -62,18 +58,59 @@ class SuperStr:
             return True
         else:
             return False
-    def __int__(self):
-        return int(self.string)
 
-s = SuperStr("123123123123")
-print(s.is_repeatance("123")) # True
-print(s.is_repeatance("123123")) # True
-print(s.is_repeatance("123123123123")) # True
-print(s.is_repeatance("12312")) # False
-print(s.is_repeatance(123)) # False
-print(s.is_palindrom()) # False
-print(s) # 123123123123 (строка)
-print(int(s)) # 123123123123 (целое число)
-print(s() + "qwe") # 123123123123qwe
-p = SuperStr("123_321")
-print(p.is_palindrom()) # True
+#s = SuperStr("123123123123")
+#print(s.is_repeatance("123")) # True
+#print(s.is_repeatance("123123")) # True
+#print(s.is_repeatance("123123123123")) # True
+#print(s.is_repeatance("12312")) # False
+#print(s.is_repeatance(123)) # False
+#print(s.is_palindrom()) # False
+#print(s) # 123123123123 (строка)
+#print(int(s)) # 123123123123 (целое число)
+#print(s + "qwe") # 123123123123qwe
+#p = SuperStr("123_321")
+#print(p.is_palindrom()) # True
+
+class Cell:
+    def __init__(self, coordinate):
+        self.coordinate = coordinate
+        self.value = 0
+    def makeVisited(self, playerNumber):
+        self.value = playerNumber
+
+class Player:
+    def __init__(self, name, number):
+        self.name = name
+        self.number = number
+
+class Board:
+    def __init__(self):
+        self.cells = []
+        for i in range(0,9):
+            self.cells.append(Cell(i))
+            self.cells[i] = 0
+    def showCells(self, *args, **kwargs):
+        print(f"{self.cells[0]}|{self.cells[1]}|{self.cells[2]}")
+        print(f"{self.cells[3]}|{self.cells[4]}|{self.cells[5]}")
+        print(f"{self.cells[6]}|{self.cells[7]}|{self.cells[8]}")
+    def visitCell(self, cellCoordinate, playerNumber):
+        board.cells[cellCoordinate].makeVisited(playerNumber)
+    def allCellAreNotVisited(self):
+        for cell in self.cells:
+            if(cell.value == 0):
+                return True
+        return False
+
+board = Board()
+playerFirst = Player('zhamilka', 1)
+playerSecond = Player('alex', 2)
+while board.allCellAreNotVisited():
+    board.showCells()
+    firstPlayerMove = int(input("Type your cell from 1 to 9 Zha"))
+    board.visitCell(firstPlayerMove-1, playerFirst.number)
+    board.showCells()
+    secondPlayerMove = int(input("Type your cell from 1 to 9 Alex"))
+    board.visitCell(secondPlayerMove-1, playerSecond.number)
+    board.showCells()
+
