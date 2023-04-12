@@ -95,7 +95,8 @@ class Board:
         print(f"{self.cells[3].value}|{self.cells[4].value}|{self.cells[5].value}")
         print(f"{self.cells[6].value}|{self.cells[7].value}|{self.cells[8].value}")
     def visitCell(self, cellCoordinate, playerNumber):
-        board.cells[cellCoordinate].makeVisited(playerNumber)
+        if(self.cells[cellCoordinate].value == 0):
+            self.cells[cellCoordinate].makeVisited(playerNumber)
     def allCellAreNotVisited(self):
         for cell in self.cells:
             if(cell.value == 0):
@@ -120,16 +121,45 @@ class Board:
             return True
         else:
             return False
+    def getUnVisitedCells(self):
+        for cell in self.cells:
+            if cell.value == 0:
+                return cell.coordinate
+
 board = Board()
-playerFirst = Player('zhamilka', 1)
-playerSecond = Player('alex', 2)
-while board.allCellAreNotVisited():
+whatGame = int(input('Do you wanna play with bot(1) or 2 players(2)'))
+if(whatGame == 1):
+    playerFirst = Player('zhamilka', 1)
+    playerSecond = Player('alexa', 2)
     board.showCells()
-    firstPlayerMove = int(input("Type your cell from 1 to 9 Zha"))
-    board.visitCell(firstPlayerMove-1, playerFirst.number)
-    print(board.winCheck(playerFirst.number))
+    while board.allCellAreNotVisited():
+        firstPlayerMove = int(input("Type your cell from 1 to 9 Zha"))
+        board.visitCell(firstPlayerMove-1, playerFirst.number)
+        if(board.winCheck(playerFirst.number)):
+            print(f"{playerFirst.name} win!")
+            break
+        board.showCells()
+        secondPlayerMove = board.getUnVisitedCells()
+        board.visitCell(secondPlayerMove, playerSecond.number)
+        if (board.winCheck(playerSecond.number)):
+            print(f"{playerSecond.name} win!")
+            break
+        board.showCells()
+elif(whatGame == 2):
+    playerFirst = Player('zhamilka', 1)
+    playerSecond = Player('alex', 2)
     board.showCells()
-    secondPlayerMove = int(input("Type your cell from 1 to 9 Alex"))
-    board.visitCell(secondPlayerMove-1, playerSecond.number)
-    board.showCells()
+    while board.allCellAreNotVisited():
+        firstPlayerMove = int(input("Type your cell from 1 to 9 Zha"))
+        board.visitCell(firstPlayerMove-1, playerFirst.number)
+        if(board.winCheck(playerFirst.number)):
+            print(f"{playerFirst.name} win!")
+            break
+        board.showCells()
+        secondPlayerMove = int(input("Type your cell from 1 to 9 Alex"))
+        board.visitCell(secondPlayerMove-1, playerSecond.number)
+        if (board.winCheck(playerSecond.number)):
+            print(f"{playerSecond.name} win!")
+            break
+        board.showCells()
 
