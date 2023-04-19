@@ -91,9 +91,17 @@ class Board:
             self.cells.append(Cell(i))
             self.cells[i].value = 0
     def showCells(self, *args, **kwargs):
-        print(f"{self.cells[0].value}|{self.cells[1].value}|{self.cells[2].value}")
-        print(f"{self.cells[3].value}|{self.cells[4].value}|{self.cells[5].value}")
-        print(f"{self.cells[6].value}|{self.cells[7].value}|{self.cells[8].value}")
+        values = ['■' for i in range(0,9)]
+        i = 0
+        for i in range(0,9):
+            if (self.cells[i].value == 1):
+                values[i] = 'o'
+            elif (self.cells[i].value == 2):
+                values[i] = 'x'
+
+        print(f"{values[0]}|{values[1]}|{values[2]} 1 2 3")
+        print(f"{values[3]}|{values[4]}|{values[5]} 4 5 6")
+        print(f"{values[6]}|{values[7]}|{values[8]} 7 8 9")
     def visitCell(self, cellCoordinate, playerNumber):
         if(self.cells[cellCoordinate].value == 0):
             self.cells[cellCoordinate].makeVisited(playerNumber)
