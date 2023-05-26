@@ -30,6 +30,7 @@ n_colors_list = [64]
 # max_iter_list = [50, 100, 150, 200, 250, 300, 350, 400, 450, 500]
 max_iter_list = [300]
 
+
 for n_colors in n_colors_list:
     start_time = time.time()
     for max_iter in max_iter_list:
